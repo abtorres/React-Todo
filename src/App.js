@@ -1,24 +1,56 @@
 import React from 'react';
+import TodoForm from './components/TodoComponents/TodoForm';
+import Todo from './components/TodoComponents/Todo';
+import $ from "jquery";
+
 
 class App extends React.Component {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
   constructor(props){
     super(props);
+    this.state = {
+      todoList: [],
+      todo: ''
+    };
+  };
 
-    this.state={
-      newItem: {},
-      todoList: []
-    }
+  onChange = (e) => {
+    this.setState({ todo: e.target.value });
+  };
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const newTodo = {
+      id: Date.now(),
+      task: this.state.todo,
+      completed: false
+    };
+    if(newTodo.task !== "") {
+      this.setState({
+        todo: '',
+        todoList: [...this.state.todoList, newTodo]
+      })
+    };
   }
+
+  onDelete = (e) => {
+    e.preventDefault();
+    console.log(e)
+  }
+
+  componentDidUpdate() {
+    $("h3").click(function() {
+      $(this).toggleClass("strike");
+    });
+  }
+
   render() {
     return (
       <div>
-        <h2>Welcome to your Todo App!</h2>
+        <TodoForm onChange={this.onChange} onSubmit={this.onSubmit} todo={this.state.todo} onDelete={this.onDelete}/>
+        <Todo todoList={this.state.todoList} />
       </div>
     );
-  }
-}
+  };
+};
 
 export default App;
