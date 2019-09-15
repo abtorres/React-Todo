@@ -1,12 +1,13 @@
 import React from 'react';
 import './Todo.css';
 
-const Todo = (props) => {
-    return (
-        <div>
-            {props.todoList.map(todo => <h3 className='todo' key={todo.id} data-key={todo.id}>{todo.task}</h3>)}
-        </div>
-    )
-}
+const Todo = (props) => (
+    <div
+        className={props.completed ? 'todo completed' : 'todo'}
+        onClick={() => props.toggleTodo(props.id)}>
+            {props.task}
+    </div>
+    
+);
 
 export default Todo;

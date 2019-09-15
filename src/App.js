@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
-import Todo from './components/TodoComponents/Todo';
-import $ from "jquery";
+import TodoList from './components/TodoComponents/TodoList';
+import shortid from 'shortid';
 
 
 class App extends React.Component {
@@ -11,6 +11,10 @@ class App extends React.Component {
       todoList: [],
       todo: ''
     };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.toggleTodo = this.toggleTodo.bind(this);
+    this.deleteCompletedTodos = this.deleteCompletedTodos.bind(this);
   };
 
   onChange = (e) => {
@@ -20,34 +24,38 @@ class App extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const newTodo = {
-      id: Date.now(),
+      id: shortid.generate(),
       task: this.state.todo,
       completed: false
     };
-    if(newTodo.task !== "") {
-      this.setState({
-        todo: '',
-        todoList: [...this.state.todoList, newTodo]
-      })
-    };
+    this.setState({
+      todoList: [...this.state.todoList, newTodo],
+      todo: ''
+    })
   }
 
-  onDelete = (e) => {
-    e.preventDefault();
-    console.log(e)
+  toggleTodo = (id) => {
+    this.setState({
+      todoList: this.state.todoList.map(todo => 
+        todo.id === id 
+        ? {...todo, completed: !todo.completed}
+        : todo
+      )
+    })
   }
 
-  componentDidUpdate() {
-    $("h3").click(function() {
-      $(this).toggleClass("strike");
-    });
+  deleteCompletedTodos () {
+    const notCompleted = this.state.todoList.filter((todo) => {
+      if(!todo.completed) return(todo);
+    })
+    this.setState({todoList: notCompleted});
   }
 
   render() {
     return (
       <div>
-        <TodoForm onChange={this.onChange} onSubmit={this.onSubmit} todo={this.state.todo} onDelete={this.onDelete}/>
-        <Todo todoList={this.state.todoList} />
+        <TodoForm onChange={this.onChange} onSubmit={this.onSubmit} todo={this.state.todo} onClick={this.deleteCompletedTodos}/>
+        <TodoList todoList={this.state.todoList} toggleTodo={this.toggleTodo}/>
       </div>
     );
   };

@@ -4,9 +4,9 @@ const TodoForm = (props) => {
     return (
         <div>
             <form onSubmit={props.onSubmit}>
-                <input value={props.todo} onChange={props.onChange} />
-                <button>Add Todo</button>
-                <button onClick={props.onDelete}>Delete Completed</button>
+                <input value={props.todo} onChange={props.onChange} required />
+                <button type='submit'>Add Todo</button>
+                <button onClick={props.onClick}>Delete Completed</button>
             </form>
         </div>
     )
