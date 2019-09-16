@@ -1,9 +1,17 @@
 .todo {
     margin: 10px;
-    color: orange;
+    color: #ffa500;
+}
+
+.todo:hover {
+    color: #d68c02;
 }
 
 .completed {
     text-decoration: line-through;
-    color: green;
+    color: #a1c93a;
+}
+
+.completed:hover {
+    color: #7f9e2f;
 }

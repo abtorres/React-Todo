@@ -56,7 +56,8 @@ class App extends React.Component {
     })
   }
 
-  deleteCompletedTodos () {
+  deleteCompletedTodos (e) {
+    e.preventDefault()
     const notCompleted = this.state.todoList.filter((todo) => {
       if(!todo.completed) return(todo);
     })

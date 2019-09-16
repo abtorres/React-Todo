@@ -5,10 +5,19 @@
 
 .submit-button {
     background-color: #a1c93a;
+    margin: 5px;
+}
+
+.submit-button:hover {
+    background-color: #7f9e2f;
 }
 
 .delete-button {
     background-color: #f56464;
+}
+
+.delete-button:hover {
+    background-color: #f74343;
 }
 
 .button:hover {
