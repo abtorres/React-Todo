@@ -2,6 +2,7 @@ import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
 import shortid from 'shortid';
+import './App.css';
 
 
 class App extends React.Component {
@@ -16,6 +17,17 @@ class App extends React.Component {
     this.toggleTodo = this.toggleTodo.bind(this);
     this.deleteCompletedTodos = this.deleteCompletedTodos.bind(this);
   };
+
+  componentDidMount() {
+    const list = localStorage.getItem('todos')
+    const todolist = JSON.parse(list)
+    this.setState(() => ({ todoList: todolist }))
+  }
+
+  componentDidUpdate() {
+    const todolist = JSON.stringify(this.state.todoList)
+    localStorage.setItem('todos', todolist)
+  }
 
   onChange = (e) => {
     this.setState({ todo: e.target.value });
@@ -53,7 +65,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='App'>
+        <h1>Todo-App</h1>
         <TodoForm onChange={this.onChange} onSubmit={this.onSubmit} todo={this.state.todo} onClick={this.deleteCompletedTodos}/>
         <TodoList todoList={this.state.todoList} toggleTodo={this.toggleTodo}/>
       </div>

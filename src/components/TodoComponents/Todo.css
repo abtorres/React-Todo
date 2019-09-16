@@ -1,4 +1,9 @@
+.todo {
+    margin: 10px;
+    color: orange;
+}
+
 .completed {
     text-decoration: line-through;
-    color: red;
+    color: green;
 }

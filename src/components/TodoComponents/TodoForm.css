@@ -1,0 +1,16 @@
+.button {
+    border-radius: 10px;
+    min-height: 30px;
+}
+
+.submit-button {
+    background-color: #a1c93a;
+}
+
+.delete-button {
+    background-color: #f56464;
+}
+
+.button:hover {
+    cursor: pointer;
+}
