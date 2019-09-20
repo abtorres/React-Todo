@@ -9,7 +9,7 @@ const HoverTodo = styled.h3`
 `
 
 const Todo = (props) => (
-    <HoverTodo
+    <HoverTodo>
         className={props.completed ? 'todo completed' : 'todo'}
         onClick={() => props.toggleTodo(props.id)}>
             {props.task}
