@@ -1,0 +1,13 @@
+.app {
+    background: black;
+    width: 100%;
+    padding: 20px 20px;
+    height: 100vh;
+}
+
+.app h2 {
+    color: white;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 20px;
+}

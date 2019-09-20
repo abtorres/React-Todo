@@ -1,0 +1,11 @@
+.todos {
+    margin: 10px;
+}
+
+.todo {
+    color: white;
+    text-align: center;
+    margin: 10px;
+    font-size: 1.4rem;
+    padding: 10px;
+}
