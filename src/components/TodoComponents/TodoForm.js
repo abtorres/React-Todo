@@ -1,17 +1,16 @@
-import React, { Component } from 'react'
-import './todoform.css'
+import React from "react";
+import './TodoForm.css';
 
-export class TodoForm extends Component {
-    render() {
-        return (
-            <div className='formdiv'>
-                <form className='form' onSubmit={this.props.onSubmit}>
-                    <input className='input' type='text' value={this.props.value} onChange={this.props.onChange}></input>
-                    <input type='submit' value='submit' onSubmit={this.props.onSubmit}></input>
-                </form>
-            </div>
-        )
-    }
+const TodoForm = (props) => {
+    return (
+        <div>
+            <form onSubmit={props.onSubmit}>
+                <input value={props.todo} onChange={props.onChange} placeholder='TODO...' required />
+                <button className='button submit-button' type='submit'>Add Todo</button>
+                <button className='button delete-button' onClick={props.onClick}>Delete Completed</button>
+            </form>
+        </div>
+    )
 }
 
-export default TodoForm
+export default TodoForm;

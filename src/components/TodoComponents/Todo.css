@@ -1,11 +1,17 @@
-.todos {
+.todo {
     margin: 10px;
+    color: #ffa500;
 }
 
-.todo {
-    color: white;
-    text-align: center;
-    margin: 10px;
-    font-size: 1.4rem;
-    padding: 10px;
+.todo:hover {
+    color: #d68c02;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #a1c93a;
+}
+
+.completed:hover {
+    color: #7f9e2f;
 }
