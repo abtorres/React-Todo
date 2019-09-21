@@ -19,8 +19,13 @@ class App extends React.Component {
 
   componentDidMount() {
     const list = localStorage.getItem('todos')
+    // console.log(list.length)//NULL!?
     const todolist = JSON.parse(list)
-    this.setState(() => ({ todoList: todolist }))
+    // console.log(todolist.length)//Null
+    // this.setState(() => ({ todoList: todolist }))
+    if(list !== null) {
+      this.setState(() => ({ todoList: todolist }))
+    }
   }
 
   componentDidUpdate() {
