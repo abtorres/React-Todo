@@ -4,7 +4,6 @@ import TodoList from './components/TodoComponents/TodoList';
 import shortid from 'shortid';
 import './App.css';
 
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -20,8 +19,13 @@ class App extends React.Component {
 
   componentDidMount() {
     const list = localStorage.getItem('todos')
+    // console.log(list.length)//NULL!?
     const todolist = JSON.parse(list)
-    this.setState(() => ({ todoList: todolist }))
+    // console.log(todolist.length)//Null
+    // this.setState(() => ({ todoList: todolist }))
+    if(list !== null) {
+      this.setState(() => ({ todoList: todolist }))
+    }else { this.setState(() => ({todoList: [] }))}
   }
 
   componentDidUpdate() {
@@ -56,10 +60,10 @@ class App extends React.Component {
     })
   }
 
-  deleteCompletedTodos (e) {
+  deleteCompletedTodos(e) {
     e.preventDefault()
     const notCompleted = this.state.todoList.filter((todo) => {
-      if(!todo.completed) return(todo);
+      if(!todo.completed) return todo;
     })
     this.setState({todoList: notCompleted});
   }
