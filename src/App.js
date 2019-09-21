@@ -25,7 +25,7 @@ class App extends React.Component {
     // this.setState(() => ({ todoList: todolist }))
     if(list !== null) {
       this.setState(() => ({ todoList: todolist }))
-    }
+    }else { this.setState(() => ({todoList: [] }))}
   }
 
   componentDidUpdate() {
